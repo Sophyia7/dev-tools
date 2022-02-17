@@ -1,0 +1,24 @@
+<!-- Removed the similar code within the temlates folder 
+Then added it to base.html
+Afterwards, Extended. -->
+{% extends 'dev_templates/base.html' %}
+
+<!-- Display contents -->
+{% block content %}
+
+    <a class="btn btn-dark" href="{% url 'videos-create' %}">Add a Video</a> <br> <br>
+
+    {% for video in videos %}
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">{{ video.channel }}</a>
+                <small class="text-muted">{{ video.date_posted|date:"F d, Y" }}</small>
+            </div>
+            <h2><a class="article-title" href="{% url 'video-detail' video.id %}">{{ video.title }}</a></h2>
+            <p class="article-content">{{ video.brief }}</p>
+        </div>
+    </article>
+    {% endfor %}
+
+{% endblock content %}

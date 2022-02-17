@@ -1,0 +1,29 @@
+<!-- Removed the similar code within the temlates folder 
+Then added it to base.html
+Afterwards, Extended. -->
+{% extends 'dev_templates/base.html' %}
+
+<div class="alert alert-secondary" role="alert">
+    A simple secondary alert—check it out!
+  </div>
+
+<!-- Display contents -->
+{% block content %}
+
+    <a class="btn btn-dark" href="{% url 'articles-create' %}">Add an Article</a> <br> <br>
+
+    {% for article in articles %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">{{ article.author }}</a>
+                    <small class="text-muted">{{ article.date_posted|date:"F d, Y" }}</small>
+                </div>
+                <h2><a class="article-title" href="{% url 'article-detail' article.id %}">{{ article.title }}</a></h2>
+                <p class="article-content">{{ article.brief }}</p>
+            </div>
+        </article>
+    {% endfor %}
+
+{% endblock content %}
+

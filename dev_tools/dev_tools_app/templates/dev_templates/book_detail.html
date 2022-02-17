@@ -1,0 +1,28 @@
+<!-- Removed the similar code within the temlates folder 
+Then added it to base.html
+Afterwards, Extended. -->
+{% extends 'dev_templates/base.html' %}
+
+<!-- Display contents -->
+{% block content %}
+
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+            </div>
+            <h2 class="article-title">{{ object.title }}</h2>
+            <p class="article-content">By {{ object.author }}</p>
+            <p class="article-content">{{ object.brief }}</p>
+            <p class="article-content">To Download a copy, click 👇</p>
+            <a class="mr-2" href="#">{{ object.file }}</a>
+
+            <div>
+                <a class="btn btn-secondary mt-1 mtb-1" href="{% url 'book-update' object.id %}">Update</a> 
+                <a class="btn btn-danger" href="{% url 'book-delete' object.id %}">Delete</a>
+            </div>
+        </div>
+    </article>
+
+
+{% endblock content %}
